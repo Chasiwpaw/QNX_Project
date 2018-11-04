@@ -1,3 +1,5 @@
+#ifndef RADAR_H
+#define RADAR_H
 #include <iostream>
 #include "Position.h"
 
@@ -15,3 +17,4 @@ class Radar {
         // Insert to Airspace Log
         void log_insert();
 };
+#endif
