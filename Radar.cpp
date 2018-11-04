@@ -1,12 +1,12 @@
 #include <iostream>
+#include "Position.h"
 
 class Radar {
-    public:
-        int plane_id;
+        int plane_id, x, y, z;
         Position p;
-        Radar(int plane_id, Position p) {
-            this.plane_id = plane_id;
-            this.p = p;
+    public:
+        Radar(int plane_id, int x, int y, int z) : p(x, y, z){
+            this->plane_id = plane_id;
         }
 
         // Insert to Airspace Status
