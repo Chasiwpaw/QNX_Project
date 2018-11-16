@@ -1,20 +1,39 @@
-#ifndef RADAR_H
-#define RADAR_H
-#include <iostream>
-#include "Position.h"
+/*
+ * radar.h
+ *
+ *  Created on: Nov 15, 2018
+ *      Author: philippeaboukasm
+ */
 
-class Radar {
-        int plane_id, x, y, z;
-        Position p;
-    public:
-        Radar(int plane_id, int x, int y, int z) : p(x, y, z){
-            this->plane_id = plane_id;
-        }
+#ifndef SRC_RADAR_H_
+#define SRC_RADAR_H_
 
-        // Insert to Airspace Status
-        void status_insert();
+class radar : public position{
 
-        // Insert to Airspace Log
-        void log_insert();
+
+public:
+
+	radar(int id, float x, float y, float z, double t){
+
+		planeid = id;
+
+		p.setX(x);
+		p.setY(y);
+		p.setZ(z);
+		p.setT(t);
+
+	}
+
+
+
+private:
+
+	int planeid;
+
+	position p;
+
 };
-#endif
+
+
+
+#endif /* SRC_RADAR_H_ */

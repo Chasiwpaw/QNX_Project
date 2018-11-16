@@ -1,16 +1,86 @@
-#ifndef POSITION_H
-#define POSITION_H
-#include <iostream>
+/*
+ * Position.h
+ *
+ *  Created on: Nov 7, 2018
+ *      Author: philippeaboukasm
+ */
 
-class Position {
-    public:
-        int x, y, z;
+#ifndef POSITION_H_
+#define POSITION_H_
 
-        Position(int x, int y, int z) {
-            this->x = x;
-            this->y = y;
-            this->z = z;
-        }
+class position{
+
+public:
+
+	position(){
+
+		x = 0;
+
+		y = 0;
+
+		z = 0;
+
+		time = 0;
+	}
+
+	position(float cx, float cy, float cz, double t){
+
+		x = cx;
+
+		y = cy;
+
+		z = cz;
+
+		time = t;
+	}
+
+	~position(){
+
+	}
+
+	void setX(float inx){
+		x = inx;
+	}
+
+	float getX() {
+		return x;
+	}
+
+	void setY(float iny){
+		y = iny;
+	}
+
+	float getY(){
+		return y;
+	}
+
+	void setZ(float inz){
+		z = inz;
+	}
+
+	float getZ() {
+		return z;
+	}
+
+	void setT(double t){
+		time = t;
+	}
+
+	double getT(){
+		return time;
+	}
+
+
+private:
+
+	float x;
+
+	float y;
+
+	float z;
+
+	double time;
 };
 
-#endif
+
+#endif /* POSITION_H_ */
