@@ -18,9 +18,13 @@ public:
 
 	~hit();
 
-	position getPosition();
+	position getPosition(){
+			return p;
+	}
 
-	int getPlaneId();
+	int getPlaneId(){
+			return planeid;
+	};
 
 private:
 
