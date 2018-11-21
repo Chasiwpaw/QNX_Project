@@ -65,6 +65,10 @@ public:
 		return velocity;
 	}
 
+	position getCurrentPos(){
+		 return currentPos;
+	}
+
 	vector<position> getPrevPos(){
 		return posfile;
 	}
