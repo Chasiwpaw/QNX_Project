@@ -5,39 +5,58 @@
  *      Author: philippeaboukasm
  */
 
+#include "hit.h"
+
 #ifndef SRC_RADAR_H_
 #define SRC_RADAR_H_
 
-class radar: public hit{
+using namespace std;
+
+class radar: public hit {
 
 public:
 
-	radar();
+	radar() {
 
-	radar(std::vector<hit> hit_list);
+	};
+
+	radar(){
+
+		hit_list.clear();
+		hit_list.insert(end(radar_status_collector), begin(hit_list), end(hit_list));
+
+	};
 
 	~radar();
 
 	// Get current airspace status
-	std::vector<hit> get_current_airspace_status();
+	vector<hit> get_current_airspace_status(){
+		return hit_list;
+	};
 
 	// Get airspace status at specific time in min
-	std::vector<hit> get_specific_airspace_status(int min);
+
 
     // Insert new aircraft to radar
-    void insert_aircraft(hit h);
+    void insert_aircraft(hit h){
+    	hit_list->push_back(h);
+    };
 
     // Collect radar status of aircraft insertions every 10 sec
-    void collect_aircraft_insertions(std::vector<hit> hit_list);
+    void collect_aircraft_insertions(std::vector<hit> hit_list){
+    	radar_status_collector.insert(std::end(radar_status_collector), std::begin(hit_list), std::end(hit_list));
+    }
 
     // Insert to aircraft insertions to airspace in log file every 60 sec
-    void log_aircraft_insertions(std::vector<hit> radar_status_collector);
+    void log_aircraft_insertions(std::vector<hit> radar_status_collector){
+
+    }
 
 private:
 
-	std::vector<hit> hit_list, radar_status_collector;
+	vector<hit> hit_list, radar_status_collector;
 
-	std::vector<std::chrono::milliseconds> aircraft_insertion_timestamps, airspace_logging_timestamps;
+	vector<std::chrono::milliseconds> aircraft_insertion_timestamps, airspace_logging_timestamps;
 
 };
 

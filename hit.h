@@ -7,25 +7,20 @@
 
 #ifndef HIT_H_
 #define HIT_H_
-
-class hit: public position{
+#include "position.h"
+class hit : public position{
 
 public:
 
-	hit(int id, position p){
+	hit();
 
-		planeid = id;
-		this->p = p;
+	hit(int id, position p);
 
-	}
+	~hit();
 
-	position getPosition() {
-		return p;
-	}
+	position getPosition();
 
-	int getPlaneId() {
-		return planeid;
-	}
+	int getPlaneId();
 
 private:
 
