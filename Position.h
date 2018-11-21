@@ -20,10 +20,10 @@ public:
 
 		z = 0;
 
-		time = 0;
+
 	}
 
-	position(float cx, float cy, float cz, double t){
+	position(float cx, float cy, float cz){
 
 		x = cx;
 
@@ -31,7 +31,6 @@ public:
 
 		z = cz;
 
-		time = t;
 	}
 
 	~position(){
@@ -62,14 +61,6 @@ public:
 		return z;
 	}
 
-	void setT(double t){
-		time = t;
-	}
-
-	double getT(){
-		return time;
-	}
-
 
 private:
 
@@ -79,7 +70,6 @@ private:
 
 	float z;
 
-	double time;
 };
 
 

@@ -8,29 +8,36 @@
 #ifndef SRC_RADAR_H_
 #define SRC_RADAR_H_
 
-class radar : public position{
-
+class radar: public hit{
 
 public:
 
-	radar(int id, float x, float y, float z, double t){
+	radar();
 
-		planeid = id;
+	radar(std::vector<hit> hit_list);
 
-		p.setX(x);
-		p.setY(y);
-		p.setZ(z);
-		p.setT(t);
+	~radar();
 
-	}
+	// Get current airspace status
+	std::vector<hit> get_current_airspace_status();
 
+	// Get airspace status at specific time in min
+	std::vector<hit> get_specific_airspace_status(int min);
 
+    // Insert new aircraft to radar
+    void insert_aircraft(hit h);
+
+    // Collect radar status of aircraft insertions every 10 sec
+    void collect_aircraft_insertions(std::vector<hit> hit_list);
+
+    // Insert to aircraft insertions to airspace in log file every 60 sec
+    void log_aircraft_insertions(std::vector<hit> radar_status_collector);
 
 private:
 
-	int planeid;
+	std::vector<hit> hit_list, radar_status_collector;
 
-	position p;
+	std::vector<std::chrono::milliseconds> aircraft_insertion_timestamps, airspace_logging_timestamps;
 
 };
 

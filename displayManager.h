@@ -20,28 +20,47 @@ public:
 
 	void displayGrid(vector<trackfile> v){
 
-		cout << "***Air Traffic Controller***";
+		cout << "***Air Traffic Controller***" << endl;
 
 		for (int p = 0; p < 100; p++){
 
-			cout << " " << p;
+			if (p == 0) {
+				cout << "[  ][ 0]";
+			}
+
+			else if(p < 10){
+				cout << "[ " << p <<"]";
+			}
+
+			else {
+			cout << "[" << p << "]";
+			}
 		}
+
+			cout << endl;
 
 		for (int i=0; i < 100; i++){
 
-			cout << i << " " ;
+			if(i < 10) {
+				cout<< "[ " << i << "]";
+			} else {
+				cout << "[" << i << "]" ;
+			}
+
 
 			for (int k=0; k < 100; k++){
-
+				bool match_pos = false;
 				for (int j = 0; j< v.size(); j++)
 				{
-				if (v[j].getCurrentPos().getX() == i && v[j].getCurrentPos().getY() == k) {
-					cout << "*";
-				}
-				else {
-					cout << "#";
+					if (v[j].getCurrentPos().getX() == k && v[j].getCurrentPos().getY() == i) {
+						match_pos = true;
+					}
 				}
 
+				if(match_pos) {
+					cout << "[**]";
+				} else {
+					cout << "[  ]";
 				}
 			}
 
@@ -49,7 +68,7 @@ public:
 
 		}
 
-
+		cout << endl;
 	}
 
 private:

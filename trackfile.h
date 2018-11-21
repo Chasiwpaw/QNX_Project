@@ -24,7 +24,6 @@ public:
 		currentPos.setX(0);
 		currentPos.setY(0);
 		currentPos.setZ(0);
-		currentPos.setT(0);
 		ID = 0;
 		velocity = 0;
 	};
@@ -33,9 +32,9 @@ public:
 
 	};
 
-	trackfile(float x, float y, float z, double t, int d, double v){
+	trackfile(float x, float y, float z, int d, double v){
 
-		position prevPos = position(currentPos.getX(), currentPos.getY(), currentPos.getZ(), currentPos.getT());
+		position prevPos = position(currentPos.getX(), currentPos.getY(), currentPos.getZ());
 
 		/* Save previous position*/
 
@@ -46,16 +45,10 @@ public:
 		currentPos.setX(x);
 		currentPos.setY(y);
 		currentPos.setZ(z);
-		currentPos.setT(t);
 		ID = d;
 		velocity = v;
 	}
 
-
-
-	double getTime(){
-		return currentPos.getT();
-	}
 
 	int getID(){
 		return ID;
