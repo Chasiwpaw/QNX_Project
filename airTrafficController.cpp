@@ -24,23 +24,15 @@ int main() {
 
 	radar r;
 
-	std::ofstream outfile ("awufgoqwheq.txt");
+	r.scan(); //parses the file to hit_list
 
-	outfile << "my text here!" << std::endl;
+	r.findActive(150); //find the active aircraft
 
-	outfile.close();
+	r.print(); //print current active list
 
-	r.scan();
+	v = r.getActive(); //returns active vector
 
-	r.findActive(150);
-
-	r.print();
-
-	v = r.getActive();
-
-//	d1.displayGrid(v);
-
-
+	d1.displayGrid(v);
 
 
 	return 0;

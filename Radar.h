@@ -76,6 +76,7 @@ public:
     void print(){
 
     	for (int i = 0; i < active_list.size(); i++){
+    		cout << "Plane ID: " << active_list[i].getID() << endl;
     		cout << "X: " << active_list[i].getCurrentPos().getX() << " Y: " << active_list[i].getCurrentPos().getY() << " Z: " << active_list[i].getCurrentPos().getZ() << endl;
     	}
     }
@@ -86,10 +87,13 @@ public:
     	for (int i = 0; i< hit_list.size(); i++){
 
     		if (hit_list[i].getEntryT() <= time){
-
-    			if((hit_list[i].getPosition().getX() > 0 && hit_list[i].getPosition().getX() < 100000) &&
-    				(hit_list[i].getPosition().getY() > 0 && hit_list[i].getPosition().getY() < 100000) &&
-					(hit_list[i].getPosition().getZ() > 0 && hit_list[i].getPosition().getZ() < 25000)){
+//    			cout << "Index: " << i << endl;
+//    			cout << hit_list[i].getPosition().getX() << endl;
+//    			cout << hit_list[i].getPosition().getY() << endl;
+//    			cout << hit_list[i].getPosition().getZ() << endl;
+    			if((hit_list[i].getPosition().getX() >= 0 && hit_list[i].getPosition().getX() <= 100000) &&
+    				(hit_list[i].getPosition().getY() >= 0 && hit_list[i].getPosition().getY() <= 100000) &&
+					(hit_list[i].getPosition().getZ() >= 0 && hit_list[i].getPosition().getZ() <= 25000)){
 
     			trackfile t(hit_list[i].getPosition().getX(),
     						hit_list[i].getPosition().getY(),

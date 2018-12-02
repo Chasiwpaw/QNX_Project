@@ -22,7 +22,8 @@ public:
 
 		cout << "***Air Traffic Controller***" << endl;
 
-		for (int p = 0; p < 100; p++){
+
+		for (int p = 0; p < 101; p++){
 
 			if (p == 0) {
 				cout << "[  ][ 0]";
@@ -39,7 +40,7 @@ public:
 
 			cout << endl;
 
-		for (int i=0; i < 100; i++){
+		for (int i=0; i < 101; i++){
 
 			if(i < 10) {
 				cout<< "[ " << i << "]";
@@ -48,24 +49,27 @@ public:
 			}
 
 
-			for (int k=0; k < 100; k++){
-				bool match_pos = false;
-				bool unknown = false;
+			for (int k=0; k < 101; k++){
+
+				bool match_pos, unknown;
+
 				for (int j = 0; j< v.size(); j++)
 				{
-					if ((v[j].getCurrentPos().getX())/1000 == k && (v[j].getCurrentPos().getY())/1000 == i) {
+					match_pos = false;
+					unknown = false;
+					if (((v[j].getCurrentPos().getX())/1000) == k && ((v[j].getCurrentPos().getY())/1000) == i) {
 						match_pos = true;
-					}
-
-					if (v[j].getID() == -1){
-						unknown = true;
+						if (v[j].getID() == -1){
+							unknown = true;
+						}
+						break;
 					}
 				}
 
-				if(match_pos && unknown == true){
+				if(match_pos && unknown){
 					cout << "[XX]";
 				}
-				if(match_pos && unknown == false) {
+				else if(match_pos && !unknown) {
 					cout << "[**]";
 				} else {
 					cout << "[  ]";
