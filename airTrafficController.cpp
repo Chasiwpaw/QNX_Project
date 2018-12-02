@@ -26,13 +26,19 @@ int main() {
 
 	r.scan(); //parses the file to hit_list
 
-	r.findActive(150); //find the active aircraft
+//	r.printhit();
 
-	r.print(); //print current active list
+	r.findActive(230); //find the active aircraft
+
+	r.printactive();
 
 	v = r.getActive(); //returns active vector
+	r.updatePosition();
+	cout<<"Updated positions @@@" <<endl;
+	r.printactive();
+//	d1.displayGrid(v);
 
-	d1.displayGrid(v);
+	r.checkCollision();
 
 
 	return 0;
