@@ -34,6 +34,15 @@ public:
 		p.setZ(z);
 	}
 
+	void setSpeed(int vx, int vy, int vz){
+
+		p.setVx(vx);
+
+		p.setVy(vy);
+
+		p.setVz(vz);
+	}
+
 	position getPosition(){
 			return p;
 	}

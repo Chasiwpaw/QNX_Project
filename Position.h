@@ -97,6 +97,15 @@ public:
 		return vz;
 	}
 
+	void setTime(int t){
+
+		time = t;
+	}
+
+	int getTime() {
+		return time;
+	}
+
 private:
 
 	int x;
@@ -110,6 +119,8 @@ private:
 	int vy;
 
 	int vz;
+
+	int time;
 };
 
 

@@ -17,7 +17,7 @@
 
 using namespace std;
 
-class radar: public hit, trackfile{
+class radar: public hit, trackfile, position{
 
 public:
 
@@ -27,11 +27,6 @@ public:
 	}
 
 	~radar(){}
-
-	// Get current airspace status
-
-	// Get airspace status at specific time in min
-
 
     void scan(){
 
@@ -74,21 +69,29 @@ public:
 
     }
 
-    void printactive(){
+    void addAircraft(int id, int x, int y, int z, int vx, int vy, int vz, int etime){
 
+    	hit_list.push_back(hit(id, position(x, y, z, vx, vy, vz), etime));
+    }
+
+    void printactive(){
+    	cout << "Active List: " << endl;
     	for (int i = 0; i < active_list.size(); i++){
-    		cout << "Active List: " << endl;
     		cout << "Plane ID: " << active_list[i].getID() << endl;
     		cout << "X: " << active_list[i].getCurrentPos().getX() << " Y: " << active_list[i].getCurrentPos().getY() << " Z: " << active_list[i].getCurrentPos().getZ() << endl;
+    		cout << "Vx: " << active_list[i].getCurrentPos().getVx() << " Vy: " << active_list[i].getCurrentPos().getVy() << " Vz: " << active_list[i].getCurrentPos().getVz() << endl;
+
     	}
     }
 
 
     void printhit(){
-    	cout << "Hit List: " << endl;
+    	cout << "Airspace Input: " << endl;
     	for (int i = 0; i < hit_list.size(); i++){
     	    		cout << "Plane ID: " << hit_list[i].getPlaneId() << endl;
     	    		cout << "X: " << hit_list[i].getPosition().getX() << " Y: " << hit_list[i].getPosition().getY() << " Z: " << hit_list[i].getPosition().getZ() << endl;
+    	    		cout << "Vx: " << hit_list[i].getPosition().getVx() << " Vy: " << hit_list[i].getPosition().getVy() << " Vz: " << hit_list[i].getPosition().getVz() << endl;
+
     	    	}
 
     }
@@ -102,7 +105,7 @@ public:
     			if((hit_list[i].getPosition().getX() >= 0 && hit_list[i].getPosition().getX() <= 100000) &&
     				(hit_list[i].getPosition().getY() >= 0 && hit_list[i].getPosition().getY() <= 100000) &&
 					(hit_list[i].getPosition().getZ() >= 0 && hit_list[i].getPosition().getZ() <= 25000)){
-    			cout << "ID: " << hit_list[i].getPlaneId() << endl;
+    			//cout << "ID: " << hit_list[i].getPlaneId() << endl;
     			trackfile t(hit_list[i].getPosition().getX(),
     						hit_list[i].getPosition().getY(),
 							hit_list[i].getPosition().getZ(),
@@ -172,7 +175,89 @@ public:
     	}
     }
 
+    void changeAltitude(int id, int amount){
 
+    	for (int k = 0; k<hit_list.size(); k++){
+    				if(hit_list[k].getPlaneId() == id){
+    	    		hit_list[k].setPosition(hit_list[k].getPosition().getX(), hit_list[k].getPosition().getY(), hit_list[k].getPosition().getZ() + (1000 * amount));
+    				}
+    			}
+
+
+    	    	for (int i = 0; i<active_list.size(); i++){
+    	    		if(active_list[i].getID() == id){
+    	    		active_list[i].setTrackfile(active_list[i].getCurrentPos().getX(), active_list[i].getCurrentPos().getY(), active_list[i].getCurrentPos().getZ() + (1000 * amount), active_list[i].getCurrentPos().getVx(), active_list[i].getCurrentPos().getVy(),active_list[i].getCurrentPos().getVz());
+    	    		}
+    	    	}
+    }
+
+    void changeSpeed(int id, int vx, int vy, int vz){
+
+    	for (int k = 0; k<hit_list.size(); k++){
+    	    				if(hit_list[k].getPlaneId() == id){
+    	    	    		hit_list[k].setSpeed(vx, vy, vz);
+    	    				}
+    	    			}
+
+
+    	for (int i = 0; i<active_list.size(); i++){
+    	    	    		if(active_list[i].getID() == id){
+    	    	    		active_list[i].setTrackfile(active_list[i].getCurrentPos().getX(), active_list[i].getCurrentPos().getY(), active_list[i].getCurrentPos().getZ(), vx, vy, vz);
+    	    	    		}
+    	    	    	}
+    }
+
+    void deleteAircraft(int id){
+
+    	for (int k = 0; k<hit_list.size(); k++){
+    	    	    				if(hit_list[k].getPlaneId() == id){
+    	    	    	    		hit_list.erase(hit_list.begin() + k);
+    	    	    				}
+    	    	    			}
+
+
+    	for (int i = 0; i<active_list.size(); i++){
+    	    	    	    		if(active_list[i].getID() == id){
+    	    	    	    		active_list.erase(active_list.begin() + i);
+    	    	    	    		}
+    	    	    	    	}
+
+
+    }
+
+    void getLog(int id){
+
+     	for (int i = 0; i<active_list.size(); i++){
+        	    	    	    		if(active_list[i].getID() == id){
+        	    	    	    		vector<position> history = active_list[i].getPrevPos();
+        	    	    	    		for (int k = 0; k <history.size(); k++){
+        	    	    	    			cout << "X: " << history[k].getX();
+        	    	    	    			cout << " Y: " << history[k].getY();
+        	    	    	    			cout << " Z: " << history[k].getZ() << endl;
+        	    	    	    		}
+        	    	    	    		}
+        	    	    	    	}
+    }
+
+    void reportCoordinates(int id){
+
+    	for (int k = 0; k<hit_list.size(); k++){
+    	    	    				if(hit_list[k].getPlaneId() == id){
+
+    	    	    				cout << "X: " << hit_list[k].getPosition().getX();
+
+    	    	    				cout << " Y: " << hit_list[k].getPosition().getY();
+
+    	    	    				cout << " Z: " << hit_list[k].getPosition().getZ() << endl;
+
+    	    	    				cout << "Vx: " << hit_list[k].getPosition().getVx();
+
+    	    	    				cout << " Vy: " << hit_list[k].getPosition().getVy();
+
+    	    	    				cout << " Vz: " << hit_list[k].getPosition().getVz() << endl;
+    	    	    				}
+    	    	    			}
+    }
 
 
 private:
