@@ -18,9 +18,9 @@ public:
 
 		hit_list.clear();
 		hit_list.insert(std::end(radar_status_collector), std::begin(hit_list), std::end(hit_list));
-	};
+	}
 
-	~communication();
+	~communication()
 
     // Delete to aircraft from airspace
     void delete_aircraft(int craftID){

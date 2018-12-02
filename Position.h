@@ -20,10 +20,16 @@ public:
 
 		z = 0;
 
+		vx = 0;
+
+		vy = 0;
+
+		vz = 0;
+
 
 	}
 
-	position(float cx, float cy, float cz){
+	position(int cx, int cy, int cz, int vcx, int vcy, int vcz){
 
 		x = cx;
 
@@ -31,45 +37,79 @@ public:
 
 		z = cz;
 
+		vx = vcx;
+
+		vy = vcy;
+
+		vz = vcz;
+
 	}
 
 	~position(){
 
 	}
 
-	void setX(float inx){
+	void setX(int inx){
 		x = inx;
 	}
 
-	float getX() {
+	int getX() {
 		return x;
 	}
 
-	void setY(float iny){
+	void setY(int iny){
 		y = iny;
 	}
 
-	float getY(){
+	int getY(){
 		return y;
 	}
 
-	void setZ(float inz){
+	void setZ(int inz){
 		z = inz;
 	}
 
-	float getZ() {
+	int getZ() {
 		return z;
 	}
 
+	void setVx(int invx){
+		vx = invx;
+	}
+
+	int getVx(){
+		return vx;
+	}
+
+	void setVy(int invy){
+		vy = invy;
+	}
+
+	int getVy(){
+		return vy;
+	}
+
+	void setVz(int invz){
+		vz = invz;
+	}
+
+	int getVz(){
+		return vz;
+	}
 
 private:
 
-	float x;
+	int x;
 
-	float y;
+	int y;
 
-	float z;
+	int z;
 
+	int vx;
+
+	int vy;
+
+	int vz;
 };
 
 

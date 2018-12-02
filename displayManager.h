@@ -50,14 +50,22 @@ public:
 
 			for (int k=0; k < 100; k++){
 				bool match_pos = false;
+				bool unknown = false;
 				for (int j = 0; j< v.size(); j++)
 				{
-					if (v[j].getCurrentPos().getX() == k && v[j].getCurrentPos().getY() == i) {
+					if ((v[j].getCurrentPos().getX())/1000 == k && (v[j].getCurrentPos().getY())/1000 == i) {
 						match_pos = true;
+					}
+
+					if (v[j].getID() == -1){
+						unknown = true;
 					}
 				}
 
-				if(match_pos) {
+				if(match_pos && unknown == true){
+					cout << "[XX]";
+				}
+				if(match_pos && unknown == false) {
 					cout << "[**]";
 				} else {
 					cout << "[  ]";

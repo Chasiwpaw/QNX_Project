@@ -12,11 +12,27 @@ class hit : public position{
 
 public:
 
-	hit();
+	hit(){}
 
-	hit(int id, position p);
+	hit(int id, position pos, int time){
+		planeid = id;
 
-	~hit();
+		p = pos;
+
+		entry_time = time;
+	}
+
+
+	~hit(){}
+
+	void setPosition(int x, int y, int z){
+
+		p.setX(x);
+
+		p.setY(y);
+
+		p.setZ(z);
+	}
 
 	position getPosition(){
 			return p;
@@ -24,13 +40,19 @@ public:
 
 	int getPlaneId(){
 			return planeid;
-	};
+	}
+
+	int getEntryT(){
+		return entry_time;
+	}
 
 private:
 
 	int planeid;
 
 	position p;
+
+	int entry_time;
 
 };
 

@@ -2,30 +2,44 @@
 #include <pthread.h>
 #include "trackfile.h"
 #include "displayManager.h"
+#include "radar.h"
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <pthread.h>
 
 using namespace std;
 
 int main() {
 
-	trackfile tf((float)1,(float) 2,(float)2, (int)3, (double)300);
+	int h = 25000;
 
-	trackfile tf2((float)3,(float) 6,(float)7, (int)3, (double)300);
+	int w = 100000;
 
-	trackfile tf3((float)6,(float) 6,(float)9, (int)3, (double)300);
+	int d = 100000;
 
 	displayManager d1;
 
 	vector <trackfile> v;
 
-	v.push_back(tf);
+	radar r;
 
-	v.push_back(tf2);
+	std::ofstream outfile ("awufgoqwheq.txt");
 
-	v.push_back(tf3);
+	outfile << "my text here!" << std::endl;
 
-	d1.displayGrid(v);
+	outfile.close();
+
+	r.scan();
+
+	r.findActive(150);
+
+	r.print();
+
+	v = r.getActive();
+
+//	d1.displayGrid(v);
+
 
 
 

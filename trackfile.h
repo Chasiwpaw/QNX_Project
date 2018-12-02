@@ -24,17 +24,31 @@ public:
 		currentPos.setX(0);
 		currentPos.setY(0);
 		currentPos.setZ(0);
+		currentPos.setVx(0);
+		currentPos.setVy(0);
+		currentPos.setVz(0);
 		ID = 0;
-		velocity = 0;
-	};
+	}
+
+	trackfile(int x, int y, int z, int vx, int vy, int vz, int d){
+
+			currentPos.setX(x);
+			currentPos.setY(y);
+			currentPos.setZ(z);
+			currentPos.setVx(vx);
+			currentPos.setVy(vy);
+			currentPos.setVz(vz);
+			ID = d;
+
+		}
 
 	~trackfile(){
 
-	};
+	}
 
-	trackfile(float x, float y, float z, int d, double v){
+	void setTrackfile(int x, int y, int z, int vx, int vy, int vz){
 
-		position prevPos = position(currentPos.getX(), currentPos.getY(), currentPos.getZ());
+		position prevPos = position(currentPos.getX(), currentPos.getY(), currentPos.getZ(), currentPos.getVx(), currentPos.getVy(), currentPos.getVz());
 
 		/* Save previous position*/
 
@@ -45,8 +59,10 @@ public:
 		currentPos.setX(x);
 		currentPos.setY(y);
 		currentPos.setZ(z);
-		ID = d;
-		velocity = v;
+		currentPos.setVx(vx);
+		currentPos.setVy(vy);
+		currentPos.setVz(vz);
+
 	}
 
 
@@ -54,9 +70,6 @@ public:
 		return ID;
 	}
 
-	double getVelocity(){
-		return velocity;
-	}
 
 	position getCurrentPos(){
 		 return currentPos;
@@ -73,8 +86,6 @@ private:
 	position currentPos;
 
 	int ID;
-	double velocity;
-
 
 	vector<position> posfile;
 
