@@ -1,8 +1,8 @@
-#include <iostream>
-
-class airspaceStatus{
-    public:
-        airspaceStatus() {
-
-        }
-}
+//#include <iostream>
+//
+//class airspaceStatus{
+//    public:
+//        airspaceStatus() {
+//
+//        }
+//};

@@ -12,64 +12,23 @@ class position{
 
 public:
 
-	position(){
+	position();
 
-		x = 0;
+	position(float cx, float cy, float cz);
 
-		y = 0;
+	~position();
 
-		z = 0;
+	void setX(float inx);
 
-//		time = 0;
-	}
+	float getX();
 
-	position(float cx, float cy, float cz, double t){
+	void setY(float iny);
 
-		x = cx;
+	float getY();
 
-		y = cy;
+	void setZ(float inz);
 
-		z = cz;
-
-//		time = t;
-	}
-
-	~position(){
-
-	}
-
-	void setX(float inx){
-		x = inx;
-	}
-
-	float getX() {
-		return x;
-	}
-
-	void setY(float iny){
-		y = iny;
-	}
-
-	float getY(){
-		return y;
-	}
-
-	void setZ(float inz){
-		z = inz;
-	}
-
-	float getZ() {
-		return z;
-	}
-
-//	void setT(double t){
-//		time = t;
-//	}
-
-//	double getT(){
-//		return time;
-//	}
-
+	float getZ();
 
 private:
 
@@ -79,7 +38,6 @@ private:
 
 	float z;
 
-//	double time;
 };
 
 

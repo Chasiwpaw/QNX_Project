@@ -7,6 +7,8 @@
 
 #ifndef SRC_RADAR_H_
 #define SRC_RADAR_H_
+#include <vector>
+#include "hit.h"
 
 class radar: public hit{
 
@@ -26,6 +28,9 @@ public:
 
     // Insert new aircraft to radar
     void insert_aircraft(hit h);
+
+    // Update the airspace with new aircraft position every 3 sec
+    void update_airspace_status();
 
     // Collect radar status of aircraft insertions every 10 sec
     void collect_aircraft_insertions(std::vector<hit> hit_list);

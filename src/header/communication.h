@@ -7,6 +7,8 @@
 
 #ifndef COMMUNICATION_H_
 #define COMMUNICATION_H_
+#include <vector>
+#include "hit.h"
 
 class communication{
 

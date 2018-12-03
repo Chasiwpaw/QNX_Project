@@ -80,7 +80,6 @@ private:
 
 	double velocity;
 
-
 };
 
 
