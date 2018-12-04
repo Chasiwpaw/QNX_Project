@@ -75,49 +75,61 @@ public:
     }
 
     void printactive(){
-    	ofstream myfile;
-    	myfile.open("activeoutput.txt");
     	cout << "Active List: " << endl;
-    	myfile << "Active List: " << endl;
     	for (int i = 0; i < active_list.size(); i++){
     		cout << "Plane ID: " << active_list[i].getID() << endl;
-    		myfile << "Plane ID: " << active_list[i].getID() << endl;
     		cout << "X: " << active_list[i].getCurrentPos().getX() << " Y: " << active_list[i].getCurrentPos().getY() << " Z: " << active_list[i].getCurrentPos().getZ() << endl;
-    		myfile <<"X: " << active_list[i].getCurrentPos().getX() << " Y: " << active_list[i].getCurrentPos().getY() << " Z: " << active_list[i].getCurrentPos().getZ() << endl;
     		cout << "Vx: " << active_list[i].getCurrentPos().getVx() << " Vy: " << active_list[i].getCurrentPos().getVy() << " Vz: " << active_list[i].getCurrentPos().getVz() << endl;
-    		myfile <<"Vx: " << active_list[i].getCurrentPos().getVx() << " Vy: " << active_list[i].getCurrentPos().getVy() << " Vz: " << active_list[i].getCurrentPos().getVz() << endl;
 
     	}
     }
 
 
     void printhit(){
-    	ofstream myfile;
-    	myfile.open("hitlistoutput.txt");
     	cout << "Airspace Input: " << endl;
-    	myfile << "Airspace Input: " << endl;
     	for (int i = 0; i < hit_list.size(); i++){
     	 cout << "Plane ID: " << hit_list[i].getPlaneId() << endl;
-    	 myfile << "Plane ID: " << hit_list[i].getPlaneId() << endl;
     	 cout << "X: " << hit_list[i].getPosition().getX() << " Y: " << hit_list[i].getPosition().getY() << " Z: " << hit_list[i].getPosition().getZ() << endl;
-    	 myfile << "X: " << hit_list[i].getPosition().getX() << " Y: " << hit_list[i].getPosition().getY() << " Z: " << hit_list[i].getPosition().getZ() << endl;
     	 cout << "Vx: " << hit_list[i].getPosition().getVx() << " Vy: " << hit_list[i].getPosition().getVy() << " Vz: " << hit_list[i].getPosition().getVz() << endl;
-    	 myfile << "Vx: " << hit_list[i].getPosition().getVx() << " Vy: " << hit_list[i].getPosition().getVy() << " Vz: " << hit_list[i].getPosition().getVz() << endl;
-
     	    	}
 
     }
 
+    void loggingactive(int time_passed){
+    	ofstream myfile;
+    	    	myfile.open("activeoutput.txt");
+    	    	myfile << "Active List at time: " << time_passed << endl;
+    	    	for (int i = 0; i < active_list.size(); i++){
+    	    		myfile << "Plane ID: " << active_list[i].getID() << endl;
+    	    		myfile <<"X: " << active_list[i].getCurrentPos().getX() << " Y: " << active_list[i].getCurrentPos().getY() << " Z: " << active_list[i].getCurrentPos().getZ() << endl;
+    	    		myfile <<"Vx: " << active_list[i].getCurrentPos().getVx() << " Vy: " << active_list[i].getCurrentPos().getVy() << " Vz: " << active_list[i].getCurrentPos().getVz() << endl;
+    }
+    	    	myfile << "Airspace Input at time: " << time_passed << endl;
+    	    	for (int i = 0; i < hit_list.size(); i++){
+    	    	 myfile << "Plane ID: " << hit_list[i].getPlaneId() << endl;
+    	    	 myfile << "X: " << hit_list[i].getPosition().getX() << " Y: " << hit_list[i].getPosition().getY() << " Z: " << hit_list[i].getPosition().getZ() << endl;
+    	    	 myfile << "Vx: " << hit_list[i].getPosition().getVx() << " Vy: " << hit_list[i].getPosition().getVy() << " Vz: " << hit_list[i].getPosition().getVz() << endl;
+
+    	    	    	}
+   }
+
+    void removeActive() {
+    	for(int i = 0; i<active_list.size(); i++) {
+    		if(active_list[i].getCurrentPos().getX() > 100000 || active_list[i].getCurrentPos().getY() > 100000 || active_list[i].getCurrentPos().getZ() > 25000){
+//    			active_list.erase(active_list.begin() + i);
+    		}
+    	}
+    }
 
     void findActive(int time){
-
+    		//cout << "here" << endl;
         	for (int i = 0; i< hit_list.size(); i++){
 
         		if (hit_list[i].getEntryT() <= time){
         			if((hit_list[i].getPosition().getX() >= 0 && hit_list[i].getPosition().getX() <= 100000) &&
         				(hit_list[i].getPosition().getY() >= 0 && hit_list[i].getPosition().getY() <= 100000) &&
     					(hit_list[i].getPosition().getZ() >= 0 && hit_list[i].getPosition().getZ() <= 25000)){
-        			//cout << "ID: " << hit_list[i].getPlaneId() << endl;
+        			cout << "ID: " << hit_list[i].getPlaneId() << endl;
         			trackfile t(hit_list[i].getPosition().getX(),
         						hit_list[i].getPosition().getY(),
     							hit_list[i].getPosition().getZ(),
@@ -151,7 +163,7 @@ public:
 
     //Run every 3 seconds at least
     void updatePosition(int time){
-
+    	cout<< "Update at time: " << time << endl;
     	for (int k = 0; k<hit_list.size(); k++){
 
     		if (hit_list[k].getEntryT() <= time){

@@ -59,21 +59,24 @@ void* display(void *) {
 	while(run) {
 
 		if(time_passed % 5 == 0) {
-			cout << "Current Time: " << time_passed << endl;
+			r.findActive(time_passed);
+//			r.removeActive();
 			r.printactive();
-
 			v = r.getActive(); //returns active vector
 			r.checkCollision();
+			cout << "Current Time: " << time_passed << endl;
 			d1.displayGrid(v);
 			cout << "Enter 0 to exit, any other number else to proceed" << endl;
 		}
 
 		if(time_passed % 15 == 0) {
-			r.findActive(time_passed); //find the active aircraft /add time
+//			r.findActive(time_passed); //find the active aircraft /add time
 		}
 
-		if(time_passed % 60 == 0) {
+		if(time_passed % 26 == 0) {
 			//logging
+//			r.logginghit(time_passed);
+			r.loggingactive(time_passed);
 		}
 	}
 }
@@ -111,7 +114,7 @@ void* timer(void *){
 		 	          rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);
 		 	   	   end_time = time(NULL);
 		 	   	   time_passed = (int) difftime(end_time, start_time);
-		 	   	  // printf("Current time is: %i \n", time_passed);
+//		 	   	   printf("Current time is: %i \n", time_passed);
 		 	          if (rcvid == 0) { /* we got a pulse */
 		 	               if (msg.pulse.code == MY_PULSE_CODE) {
 		 	                  // printf("we got a pulse from our timer\n");
@@ -187,6 +190,7 @@ int main() {
 	r.scan(); //parses the file to hit_list
 
 	while(running){
+	v.clear();
 
 	cout << "***Air Traffic Controller***"<< endl;
 	cout << "Input the command number you would like to execute:" << endl;
