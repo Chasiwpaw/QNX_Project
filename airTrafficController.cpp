@@ -251,7 +251,7 @@ int main() {
 		cout << "Input the command number you would like to execute:"<< endl;
 		cout << "1 - Change altitude" << endl;
 		cout << "2 - Change speed" << endl;
-		cout << "3 - Report position/Velocity" << endl;
+		cout << "3 - Report position/velocity" << endl;
 		cout << "4 - Enter holding pattern" << endl;
 		cout << "5 - Exit" << endl;
 

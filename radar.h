@@ -163,7 +163,7 @@ public:
 
     //Run every 3 seconds at least
     void updatePosition(int time){
-    	cout<< "Update at time: " << time << endl;
+    	//cout<< "Update at time: " << time << endl;
     	for (int k = 0; k<hit_list.size(); k++){
 
     		if (hit_list[k].getEntryT() <= time){
